@@ -1,6 +1,7 @@
 package automationcraft.testcreation.petclinic.pages;
 
 import automationcraft.engine.selenium.SeleniumBase;
+import org.bson.Document;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,7 +39,8 @@ public class petClinicFindPetsPage extends SeleniumBase {
         }
     }
 
-    public void validarBusquedaListaPet(String name){
+    public Document validarBusquedaListaPet(String name){
+        Document doc = new Document("feature", "HU-001").append("scenario", "Busqueda por nombre de mascota").append("passed", false);
         if(isDisplayed(resultTable)){
             int coincidencias=0;
             WebElement webTable = getDriver().findElement(resultTable);
@@ -54,7 +56,10 @@ public class petClinicFindPetsPage extends SeleniumBase {
                 }
             }
             assertTrue(coincidencias>0);
+            System.out.println("paso");
+            doc.append("passed", coincidencias>0);
         }
+        return doc;
     }
 
 }

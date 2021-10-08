@@ -25,6 +25,7 @@ public class ApplicationHooks {
         String browserName = prop.getProperty("browser");
         String remoteDriver = (prop.getProperty("remoteDriver"));
         driverFactory = new DriverFactory();
+        System.out.println("Browser: "+browserName+". RemoteDriver: "+remoteDriver);
         driver = driverFactory.init_driver(browserName,remoteDriver);
     }
 
