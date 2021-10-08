@@ -10,6 +10,7 @@ Feature: HU-001 Buscador de Mascotas
   Scenario: Busqueda por nombre de mascota
     Given existen mascotas registradas
     When se hace la busqueda de mascotas por nombre "Lu"
+    And guardo los datos en la bbdd
     Then se deben listar todas las mascotas que empiecen por "Lu"
 
   Scenario: Filtrar por tipo de mascota
