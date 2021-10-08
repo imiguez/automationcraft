@@ -1,6 +1,7 @@
 package automationcraft.testcreation.petclinic.steps;
 
 import automationcraft.engine.selenium.DriverFactory;
+import automationcraft.testcreation.petclinic.mongo.Conexion;
 import automationcraft.testcreation.petclinic.pages.petClinicFindPetsPage;
 import automationcraft.testcreation.petclinic.pages.petClinicHomePage;
 import com.mongodb.ConnectionString;
@@ -38,12 +39,8 @@ public class petClinicSteps {
 
 	@When("guardo los datos en la bbdd")
 	public void guardo_los_datos_en_la_bbdd() {
-		ConnectionString connectionString = new ConnectionString("mongodb+srv://tomas:tomas@cluster0.0gvyf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-		MongoClientSettings settings = MongoClientSettings.builder()
-				.applyConnectionString(connectionString)
-				.build();
-		MongoClient mongoClient = MongoClients.create(settings);
-		MongoDatabase db = mongoClient.getDatabase("test");
+		MongoDatabase db = Conexion.getdb();
+
 
 		MongoCollection<Document> collection = db.getCollection("usuarios");
 		Document canvas = new Document("nombre", "juan");
